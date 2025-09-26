@@ -17,3 +17,94 @@
 }
 
 /* STUDENT CODE STARTS HERE */
+
+/* --- Tablet View (≥768px) --- */
+@media (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  .grid > :nth-child(3n) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+  }
+  .gallery {
+    display: flex; 
+    justify-content: space-around;
+  }
+  .gallery img {
+    flex: 1 1 30%;
+  }
+  .grid div:nth-child(even) {
+    background-color: #b5b2b2;
+  }
+}
+
+/* --- Desktop View (≥1200px) --- */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    justify-items: stretch; /* Reset justify-items from tablet view */
+  }
+  
+  /* Reset the 3rd child positioning from tablet view */
+  .grid > :nth-child(3n) {
+    grid-column: auto; /* Reset to auto instead of spanning full width */
+    justify-self: auto; /* Reset justify-self */
+    width: auto; /* Reset width */
+  }
+
+  .gallery {
+    justify-content: space-between;
+  }
+  .gallery img {
+    flex: 1 1 200px;
+  }
+  .grid div:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* --- Print View --- */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .gallery {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .grid div {
+    border: 1px solid blue;
+    page-break-inside: avoid;
+  }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .gallery img:hover,
+  .grid > div:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* --- Dark Mode --- */
+@media (prefers-color-scheme: dark) {
+  body {
+    background:  #111;
+    color: #eee;
+  }
+
+  .grid div {
+    background: #111;
+    border: 1px solid #EB5B00;
+  }
+}
+
